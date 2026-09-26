@@ -1,0 +1,56 @@
+// ============================================================
+// UI CHROME STRINGS — every non-crop-data label in the app
+// ============================================================
+const UI = {
+  siteName:        { en: "Smart Farming Advisor", mr: "स्मार्ट फार्मिंग अ‍ॅडव्हायझर" },
+  tagline:          { en: "A simple farming guide for farmers in Chiplun — from planting to yield.", mr: "चिपळूणमधील शेतकऱ्यांसाठी सोपी शेती मार्गदर्शिका — लागवडीपासून उत्पन्नापर्यंत." },
+  navHome:          { en: "Home", mr: "मुख्यपृष्ठ" },
+  navCrops:         { en: "Crops", mr: "पिके" },
+  navCalendar:      { en: "Crop Calendar", mr: "पीक कॅलेंडर" },
+  navFertilizer:    { en: "Fertilizer Guide", mr: "खत मार्गदर्शक" },
+  navPest:          { en: "Pest & Disease", mr: "कीड व रोग" },
+  navAbout:         { en: "About", mr: "आमच्याबद्दल" },
+  navFeedback:      { en: "Feedback", mr: "अभिप्राय" },
+  selectCrop:       { en: "Select Your Crop", mr: "तुमचे पीक निवडा" },
+  startJourney:     { en: "Start Crop Journey", mr: "पीक प्रवास सुरू करा" },
+  selectAge:        { en: "Select Tree / Crop Age", mr: "झाडाचे / पिकाचे वय निवडा" },
+  overview:         { en: "Overview", mr: "माहिती" },
+  timeline:         { en: "Crop Journey", mr: "पीक प्रवास" },
+  calendarHeading:  { en: "Monthly Crop Calendar", mr: "मासिक पीक कॅलेंडर" },
+  sourcesHeading:   { en: "Sources", mr: "संदर्भ" },
+  harvestHeading:   { en: "Harvest", mr: "काढणी" },
+  fertilizerCard:   { en: "FERTILIZER", mr: "खत" },
+  fertilizerLabel:  { en: "Fertilizer", mr: "खत" },
+  nutrientLabel:    { en: "Nutrient", mr: "अन्नद्रव्य" },
+  quantityLabel:    { en: "Quantity", mr: "प्रमाण" },
+  basisLabel:       { en: "Basis", mr: "आधार" },
+  whenLabel:        { en: "When", mr: "कधी" },
+  methodLabel:      { en: "How to apply", mr: "कसे द्यावे" },
+  importantLabel:   { en: "Important", mr: "महत्त्वाची सूचना" },
+  sourceBtn:        { en: "Source", mr: "संदर्भ पहा" },
+  waterLabel:       { en: "Water", mr: "पाणी" },
+  cropCareLabel:    { en: "Crop Care", mr: "पीक निगा" },
+  pestLabel:        { en: "Pest & Disease", mr: "कीड व रोग" },
+  nextStepLabel:    { en: "Next Step", mr: "पुढील टप्पा" },
+  nextStageBtn:     { en: "Next Stage →", mr: "पुढील टप्पा →" },
+  prevStageBtn:     { en: "← Previous", mr: "← मागील" },
+  backToCrops:      { en: "← All Crops", mr: "← सर्व पिके" },
+  stageOf:          { en: "Stage", mr: "टप्पा" },
+  noFertilizerMsg:  { en: "No fertilizer application scheduled at this stage according to the selected recommendation.", mr: "निवडलेल्या शिफारशीनुसार या टप्प्यावर खत देण्याची गरज नाही." },
+  unverifiedMsg:    { en: "Verified recommendation not available.", mr: "पडताळणी केलेली शिफारस उपलब्ध नाही." },
+  conflictHeading:  { en: "Sources differ on this point", mr: "या मुद्द्यावर संदर्भांमध्ये फरक आहे" },
+  disclaimerHeading:{ en: "Disclaimer", mr: "सूचना" },
+  disclaimerText:   { en: "Agricultural recommendations may vary according to soil condition, crop age, variety, climate and local conditions. Use soil-test results and consult local agricultural experts before applying fertilizers or crop-protection products.",
+                       mr: "मातीची स्थिती, झाडाचे वय, जात, हवामान आणि स्थानिक परिस्थितीनुसार शेती शिफारशींमध्ये फरक असू शकतो. खते किंवा पीक-संरक्षण औषधे वापरण्यापूर्वी मातीचा तपासणी अहवाल पाहावा आणि स्थानिक कृषी तज्ज्ञांचा सल्ला घ्यावा." },
+  aboutText:        { en: "Smart Farming Advisor is an educational, non-commercial guide built for farmers of Chiplun, Ratnagiri. It draws only on verified recommendations from Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth (DBSKKV), Dapoli, ICAR institutes, and Maharashtra government agriculture publications. Where verified data is not available, that is clearly stated instead of guessing. This site does not sell, promote or recommend any fertilizer brand.",
+                     mr: "स्मार्ट फार्मिंग अ‍ॅडव्हायझर ही चिपळूण, रत्नागिरी येथील शेतकऱ्यांसाठी बनवलेली शैक्षणिक, बिनव्यावसायिक मार्गदर्शिका आहे. यामध्ये केवळ डॉ. बाळासाहेब सावंत कोकण कृषी विद्यापीठ (DBSKKV), दापोली, ICAR संस्था आणि महाराष्ट्र शासनाच्या कृषी प्रकाशनांमधील पडताळणी केलेल्या शिफारशींचाच वापर केला आहे. जिथे पडताळणी केलेली माहिती उपलब्ध नाही, तिथे अंदाज न बांधता ते स्पष्टपणे सांगितले आहे. ही वेबसाईट कोणत्याही खत ब्रँडची विक्री किंवा जाहिरात करत नाही." },
+  feedbackText:     { en: "This is a static, offline-friendly guide with no login and no server. To share feedback about a crop guide or report an error, please contact your local Krishi Vigyan Kendra (KVK) or agriculture extension office in Chiplun / Ratnagiri.",
+                      mr: "ही एक स्थिर (स्टॅटिक), ऑफलाइन वापरता येणारी मार्गदर्शिका आहे — यात लॉगिन किंवा सर्व्हर नाही. पीक मार्गदर्शिकेबद्दल अभिप्राय द्यायचा असल्यास किंवा चूक निदर्शनास आणायची असल्यास, कृपया चिपळूण / रत्नागिरी येथील स्थानिक कृषी विज्ञान केंद्र (KVK) किंवा कृषी विस्तार कार्यालयाशी संपर्क साधा." },
+  langToggle:       { en: "मराठी", mr: "EN" },
+  footerNote:       { en: "Educational information only. Not a substitute for a soil test or expert advice.", mr: "केवळ शैक्षणिक माहिती. मातीपरीक्षण किंवा तज्ज्ञ सल्ल्याला हा पर्याय नाही." },
+};
+
+function t(key) {
+  const lang = getLang();
+  return (UI[key] && UI[key][lang]) || (UI[key] && UI[key].en) || key;
+}
