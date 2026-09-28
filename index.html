@@ -2,20 +2,243 @@
 <html lang="mr">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Smart Farming Advisor — स्मार्ट फार्मिंग अ‍ॅडव्हायझर</title>
-<meta name="description" content="A simple farming guide for farmers in Chiplun — from planting to yield. Verified crop and fertilizer guidance for Mango, Coconut, Cashew, Banana and Arecanut." />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌾</text></svg>" />
+<meta name="description" content="A simple farming guide for farmers in Chiplun — from planting to yield." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;700&family=Noto+Serif+Devanagari:wght@600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css" />
-</head>
-<body>
-<div id="app"></div>
+<style>
+:root{--laterite:#a63a1e;--laterite-dark:#7c2c16;--leaf:#2f5233;--cream:#faf3e7;--cream-deep:#f0e5d2;--ink:#2a2220;--gold:#c9932a;--line:#e2d3ba;--white:#fffdf9;--muted:#6b5c4e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:"Noto Sans Devanagari","Noto Sans",system-ui,sans-serif;font-size:17px;line-height:1.6}
+h1,h2,h3{font-family:"Noto Serif Devanagari","Noto Sans Devanagari",serif;color:var(--laterite-dark);line-height:1.25;margin:0 0 10px}
+h1{font-size:clamp(1.9rem,6vw,3rem)} h2{font-size:clamp(1.5rem,4.5vw,2.1rem)} h3{font-size:1.1rem}
+p{margin:0 0 12px}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+section{padding:56px 0}
+.lead{color:var(--muted);max-width:640px}
 
-<script src="js/i18n.js"></script>
-<script src="js/data.js"></script>
-<script src="js/app.js"></script>
+/* language: show only the active language */
+body[data-lang="mr"] .en{display:none}
+body[data-lang="en"] .mr{display:none}
+
+/* navbar */
+nav{position:sticky;top:0;z-index:20;background:var(--leaf);color:var(--white)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px}
+.brand{font-weight:700;text-decoration:none;display:flex;gap:8px;align-items:center}
+.links{display:flex;gap:18px;align-items:center}
+.links a{text-decoration:none;font-size:.95rem;opacity:.92}
+.links a:hover{opacity:1;text-decoration:underline}
+.lang{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);color:var(--white);border-radius:10px;padding:7px 12px;font:inherit;font-weight:700;cursor:pointer}
+@media(max-width:760px){.links a.hide-sm{display:none}}
+
+/* buttons */
+.btn{display:inline-block;background:var(--laterite);color:var(--white);text-decoration:none;font-weight:700;border-radius:12px;padding:14px 26px;min-height:48px}
+.btn:hover{background:var(--laterite-dark)}
+.btn.ghost{background:transparent;color:var(--laterite-dark);border:2px solid var(--laterite)}
+.btn.ghost:hover{background:var(--cream-deep)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+
+/* hero */
+.hero{background:linear-gradient(180deg,var(--cream-deep),var(--cream));text-align:center;padding:72px 0 60px}
+.hero .emoji{font-size:2.6rem;margin-bottom:8px}
+.hero p.lead{margin:0 auto 6px;font-size:1.08rem}
+.hero .btn-row{justify-content:center}
+.crops{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:28px}
+.chip{background:var(--white);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-weight:500}
+
+/* generic grids/cards */
+.grid{display:grid;gap:16px;margin-top:26px;grid-template-columns:1fr}
+@media(min-width:620px){.grid.g2{grid-template-columns:1fr 1fr}.grid.g3{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.grid.g3{grid-template-columns:repeat(3,1fr)}}
+.card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(42,34,32,.06)}
+.card .ic{font-size:1.8rem;display:block;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.95rem;margin:0}
+.alt{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* about */
+.about{display:grid;gap:26px;align-items:center}
+@media(min-width:820px){.about{grid-template-columns:1.2fr 1fr}}
+.points{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.points li{background:var(--white);border-left:4px solid var(--gold);border-radius:8px;padding:12px 14px;font-size:.95rem}
+
+/* how it works */
+.flow{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:0;max-width:640px}
+.flow li{position:relative;display:flex;gap:14px;align-items:flex-start;padding:0 0 22px}
+.flow li:not(:last-child)::before{content:"";position:absolute;left:19px;top:42px;bottom:2px;width:2px;background:var(--line)}
+.num{flex:0 0 40px;height:40px;border-radius:50%;background:var(--leaf);color:var(--white);display:flex;align-items:center;justify-content:center;font-weight:700}
+.flow h3{margin-bottom:2px}
+.flow p{color:var(--muted);font-size:.95rem;margin:0}
+.mini{margin-top:30px;display:grid;gap:16px}
+@media(min-width:720px){.mini{grid-template-columns:1fr 1fr}}
+.mini .card h3{margin-bottom:8px}
+.mini .card p{line-height:1.9}
+
+/* cta */
+.cta{background:var(--leaf);color:var(--white);text-align:center}
+.cta h2{color:var(--white)}
+.cta p{opacity:.9;max-width:560px;margin:0 auto 6px}
+.cta .btn{background:var(--gold);color:var(--ink);margin-top:20px}
+.cta .btn:hover{background:#dba53a}
+
+/* footer */
+footer{background:var(--ink);color:#d9cdbb;padding:34px 0;font-size:.88rem}
+footer h3{color:var(--white);font-size:1rem}
+footer .disc{max-width:720px;margin-top:10px;opacity:.85}
+footer .links a{color:#d9cdbb}
+.foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+</style>
+</head>
+<body data-lang="mr">
+
+<!-- 1. NAVBAR -->
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">🌾 <span class="en">Smart Farming Advisor</span><span class="mr">स्मार्ट फार्मिंग अ‍ॅडव्हायझर</span></a>
+    <div class="links">
+      <a class="hide-sm" href="#about"><span class="en">About</span><span class="mr">माहिती</span></a>
+      <a class="hide-sm" href="#features"><span class="en">Features</span><span class="mr">वैशिष्ट्ये</span></a>
+      <a class="hide-sm" href="#how"><span class="en">How It Works</span><span class="mr">कसे वापरावे</span></a>
+      <a class="hide-sm" href="guide.html#home"><span class="en">Open Guide</span><span class="mr">मार्गदर्शिका उघडा</span></a>
+      <button class="lang" id="langBtn" type="button" aria-label="Change language">EN</button>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+<!-- 2. HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="emoji">🌾</div>
+    <h1><span class="en">Smart Farming Advisor</span><span class="mr">स्मार्ट फार्मिंग अ‍ॅडव्हायझर</span></h1>
+    <p class="lead"><span class="en">A simple farming guide for farmers in Chiplun — from planting to yield.</span><span class="mr">चिपळूणमधील शेतकऱ्यांसाठी सोपी शेती मार्गदर्शिका — लागवडीपासून उत्पन्नापर्यंत.</span></p>
+    <p class="lead"><span class="en">Pick your crop and follow it stage by stage to see what to apply, how much, and when.</span><span class="mr">तुमचे पीक निवडा आणि टप्प्याटप्प्याने पाहा — काय द्यायचे, किती द्यायचे आणि कधी द्यायचे.</span></p>
+    <div class="btn-row">
+      <a class="btn" href="guide.html#home"><span class="en">Select Your Crop</span><span class="mr">तुमचे पीक निवडा</span></a>
+      <a class="btn ghost" href="#how"><span class="en">See How It Works</span><span class="mr">कसे वापरावे ते पाहा</span></a>
+    </div>
+    <div class="crops">
+      <span class="chip">🥭 <span class="en">Mango</span><span class="mr">आंबा</span></span>
+      <span class="chip">🥥 <span class="en">Coconut</span><span class="mr">नारळ</span></span>
+      <span class="chip">🌰 <span class="en">Cashew</span><span class="mr">काजू</span></span>
+      <span class="chip">🍌 <span class="en">Banana</span><span class="mr">केळी</span></span>
+      <span class="chip">🌴 <span class="en">Arecanut</span><span class="mr">सुपारी</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. ABOUT -->
+<section id="about" class="alt">
+  <div class="wrap about">
+    <div>
+      <h2><span class="en">What is this website for?</span><span class="mr">ही वेबसाईट कशासाठी आहे?</span></h2>
+      <p class="lead"><span class="en">Smart Farming Advisor is a free, educational crop guide made for farmers of Chiplun, Ratnagiri. It walks you through each important stage of your crop and tells you what to do now — with fertilizer quantity, timing and method — using recommendations from Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth (DBSKKV), Dapoli and ICAR.</span><span class="mr">स्मार्ट फार्मिंग अ‍ॅडव्हायझर ही चिपळूण, रत्नागिरी येथील शेतकऱ्यांसाठी बनवलेली मोफत, शैक्षणिक पीक मार्गदर्शिका आहे. तुमच्या पिकाचा प्रत्येक महत्त्वाचा टप्पा समजावून सांगते आणि आता काय करायचे ते सांगते — खताचे प्रमाण, वेळ आणि देण्याची पद्धत यासह. यासाठी डॉ. बाळासाहेब सावंत कोकण कृषी विद्यापीठ (DBSKKV), दापोली आणि ICAR च्या शिफारशींचा वापर केला आहे.</span></p>
+    </div>
+    <ul class="points">
+      <li><span class="en">Every fertilizer recommendation shows its source.</span><span class="mr">प्रत्येक खत शिफारशीसोबत तिचा संदर्भ दिलेला आहे.</span></li>
+      <li><span class="en">Where a verified figure is not available, the guide says so instead of guessing.</span><span class="mr">पडताळलेली माहिती उपलब्ध नसल्यास अंदाज न लावता तसे स्पष्ट सांगितले आहे.</span></li>
+      <li><span class="en">No brand names, no advertising, no login.</span><span class="mr">ब्रँडची नावे नाहीत, जाहिराती नाहीत, लॉगिन नाही.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4. FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <h2><span class="en">What you can do here</span><span class="mr">येथे तुम्ही काय करू शकता</span></h2>
+    <div class="grid g3">
+      <div class="card"><span class="ic">🌱</span><h3><span class="en">Guides for 5 crops</span><span class="mr">५ पिकांसाठी मार्गदर्शन</span></h3><p><span class="en">Mango, Coconut, Cashew, Banana and Arecanut — each with its own separate guide.</span><span class="mr">आंबा, नारळ, काजू, केळी आणि सुपारी — प्रत्येकासाठी स्वतंत्र मार्गदर्शिका.</span></p></div>
+      <div class="card"><span class="ic">📅</span><h3><span class="en">Choose your tree's age</span><span class="mr">झाडाचे वय निवडा</span></h3><p><span class="en">Young and mature plants need different doses, so the guide follows the age or stage you select.</span><span class="mr">लहान आणि पूर्ण वाढलेल्या झाडांना वेगवेगळी मात्रा लागते, म्हणून तुम्ही निवडलेल्या वयानुसार माहिती दिसते.</span></p></div>
+      <div class="card"><span class="ic">🧭</span><h3><span class="en">Step-by-step crop journey</span><span class="mr">टप्प्याटप्प्याने पीक प्रवास</span></h3><p><span class="en">Move from planting to harvest one stage at a time, with a clear “Next Stage” button.</span><span class="mr">लागवडीपासून काढणीपर्यंत एकेक टप्पा पाहा, “पुढील टप्पा” बटणासह.</span></p></div>
+      <div class="card"><span class="ic">🧪</span><h3><span class="en">Fertilizer cards</span><span class="mr">खत कार्ड</span></h3><p><span class="en">See the fertilizer name, nutrient, quantity, when to apply and how to apply — with a Source button.</span><span class="mr">खताचे नाव, अन्नद्रव्य, प्रमाण, कधी आणि कसे द्यायचे ते पाहा — संदर्भ बटणासह.</span></p></div>
+      <div class="card"><span class="ic">💧</span><h3><span class="en">Water, care, pests &amp; diseases</span><span class="mr">पाणी, निगा, कीड व रोग</span></h3><p><span class="en">Each stage also gives water advice, crop care tips and what pests or diseases to watch for.</span><span class="mr">प्रत्येक टप्प्यावर पाण्याचा सल्ला, पीक निगा आणि कोणत्या कीड-रोगांकडे लक्ष द्यायचे तेही दिले आहे.</span></p></div>
+      <div class="card"><span class="ic">🗓️</span><h3><span class="en">Crop calendar</span><span class="mr">पीक कॅलेंडर</span></h3><p><span class="en">A simple calendar for each crop showing when the main activities happen.</span><span class="mr">प्रत्येक पिकासाठी मुख्य कामे कोणत्या काळात होतात ते दाखवणारे सोपे कॅलेंडर.</span></p></div>
+      <div class="card"><span class="ic">🗂️</span><h3><span class="en">Fertilizer guide &amp; pest page</span><span class="mr">खत मार्गदर्शक व कीड-रोग पान</span></h3><p><span class="en">See all verified fertilizer recommendations, or all pest and disease notes, for every crop in one place.</span><span class="mr">सर्व पिकांच्या पडताळलेल्या खत शिफारशी किंवा कीड-रोग माहिती एकाच ठिकाणी पाहा.</span></p></div>
+      <div class="card"><span class="ic">🇮🇳</span><h3><span class="en">Marathi and English</span><span class="mr">मराठी आणि इंग्रजी</span></h3><p><span class="en">Switch language anytime. Marathi is the default, and both show the same information.</span><span class="mr">कधीही भाषा बदला. मराठी ही मुख्य भाषा आहे आणि दोन्ही भाषांत सारखीच माहिती आहे.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. HOW IT WORKS -->
+<section id="how" class="alt">
+  <div class="wrap">
+    <h2><span class="en">How it works</span><span class="mr">कसे वापरावे</span></h2>
+    <p class="lead"><span class="en">Follow your crop in six simple steps.</span><span class="mr">सहा सोप्या टप्प्यांत तुमच्या पिकाचे मार्गदर्शन घ्या.</span></p>
+    <ol class="flow">
+      <li><span class="num">1</span><div><h3><span class="en">Select Crop</span><span class="mr">पीक निवडा</span></h3><p><span class="en">Tap Mango, Coconut, Cashew, Banana or Arecanut.</span><span class="mr">आंबा, नारळ, काजू, केळी किंवा सुपारी निवडा.</span></p></div></li>
+      <li><span class="num">2</span><div><h3><span class="en">Select Tree / Crop Age</span><span class="mr">झाडाचे / पिकाचे वय निवडा</span></h3><p><span class="en">Choose the age group that matches your plants, then tap “Start Crop Journey”.</span><span class="mr">तुमच्या झाडांशी जुळणारा वयोगट निवडा आणि “पीक प्रवास सुरू करा” दाबा.</span></p></div></li>
+      <li><span class="num">3</span><div><h3><span class="en">View the Current Stage</span><span class="mr">सध्याचा टप्पा पाहा</span></h3><p><span class="en">Start at planting and see the stage name and its timing.</span><span class="mr">लागवडीपासून सुरुवात करा आणि टप्प्याचे नाव व वेळ पाहा.</span></p></div></li>
+      <li><span class="num">4</span><div><h3><span class="en">See What to Apply</span><span class="mr">काय द्यायचे ते पाहा</span></h3><p><span class="en">Read the fertilizer card: quantity, timing and application method. Tap Source to see where it comes from.</span><span class="mr">खत कार्ड वाचा: प्रमाण, वेळ आणि देण्याची पद्धत. संदर्भ बटण दाबून माहितीचा स्रोत पाहा.</span></p></div></li>
+      <li><span class="num">5</span><div><h3><span class="en">Check Water, Care &amp; Pests</span><span class="mr">पाणी, निगा व कीड पाहा</span></h3><p><span class="en">Read the water advice, crop care and pest &amp; disease notes for that stage.</span><span class="mr">त्या टप्प्यासाठी पाणी, पीक निगा आणि कीड-रोग माहिती वाचा.</span></p></div></li>
+      <li><span class="num">6</span><div><h3><span class="en">Continue to Harvest</span><span class="mr">काढणीपर्यंत पुढे जा</span></h3><p><span class="en">Tap “Next Stage” until you reach harvest, where the sources and crop calendar are shown.</span><span class="mr">काढणीपर्यंत “पुढील टप्पा” दाबत जा; शेवटी संदर्भ आणि पीक कॅलेंडर दिसते.</span></p></div></li>
+    </ol>
+
+    <div class="mini">
+      <div class="card"><h3>🗓️ <span class="en">Crop Calendar</span><span class="mr">पीक कॅलेंडर</span></h3><p><span class="en">Select Crop<br>↓<br>Open Crop Calendar<br>↓<br>See main activities by month</span><span class="mr">पीक निवडा<br>↓<br>पीक कॅलेंडर उघडा<br>↓<br>महिन्यानुसार मुख्य कामे पाहा</span></p></div>
+      <div class="card"><h3>🧪 <span class="en">Fertilizer Guide</span><span class="mr">खत मार्गदर्शक</span></h3><p><span class="en">Open Fertilizer Guide<br>↓<br>See each crop's verified recommendations<br>↓<br>Tap Source to check the reference</span><span class="mr">खत मार्गदर्शक उघडा<br>↓<br>प्रत्येक पिकाच्या पडताळलेल्या शिफारशी पाहा<br>↓<br>संदर्भ बटण दाबून स्रोत तपासा</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. WHO IS IT FOR -->
+<section id="who">
+  <div class="wrap">
+    <h2><span class="en">Who is it for?</span><span class="mr">हे कोणासाठी आहे?</span></h2>
+    <div class="grid g3">
+      <div class="card"><span class="ic">👨‍🌾</span><h3><span class="en">Farmers of Chiplun</span><span class="mr">चिपळूणमधील शेतकरी</span></h3><p><span class="en">Farmers in Chiplun, Ratnagiri and the surrounding Konkan area.</span><span class="mr">चिपळूण, रत्नागिरी आणि आसपासच्या कोकण भागातील शेतकरी.</span></p></div>
+      <div class="card"><span class="ic">🌳</span><h3><span class="en">Growers of the five crops</span><span class="mr">पाच पिकांचे उत्पादक</span></h3><p><span class="en">Anyone growing mango, coconut, cashew, banana or arecanut who wants clear, sourced guidance.</span><span class="mr">आंबा, नारळ, काजू, केळी किंवा सुपारी पिकवणारे आणि स्पष्ट, संदर्भासह मार्गदर्शन हवे असलेले सर्वजण.</span></p></div>
+      <div class="card"><span class="ic">📱</span><h3><span class="en">Mobile and Marathi users</span><span class="mr">मोबाईल व मराठी वापरकर्ते</span></h3><p><span class="en">Made for phones, in large readable text, with Marathi as the default language.</span><span class="mr">मोबाईलसाठी बनवलेली, मोठ्या वाचनीय अक्षरांत, मराठी मुख्य भाषा असलेली.</span></p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. FINAL CTA -->
+<section class="cta">
+  <div class="wrap">
+    <h2><span class="en">Ready to check your crop?</span><span class="mr">तुमचे पीक तपासायला तयार आहात?</span></h2>
+    <p><span class="en">No login needed. Open the guide, select your crop and start.</span><span class="mr">लॉगिनची गरज नाही. मार्गदर्शिका उघडा, पीक निवडा आणि सुरुवात करा.</span></p>
+    <a class="btn" href="guide.html#home"><span class="en">Start Using the Guide</span><span class="mr">मार्गदर्शिका वापरण्यास सुरू करा</span></a>
+  </div>
+</section>
+
+</main>
+
+<!-- 8. FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <strong>🌾 <span class="en">Smart Farming Advisor</span><span class="mr">स्मार्ट फार्मिंग अ‍ॅडव्हायझर</span></strong>
+      <div class="links">
+        <a href="#about"><span class="en">About</span><span class="mr">माहिती</span></a>
+        <a href="#features"><span class="en">Features</span><span class="mr">वैशिष्ट्ये</span></a>
+        <a href="#how"><span class="en">How It Works</span><span class="mr">कसे वापरावे</span></a>
+        <a href="guide.html#home"><span class="en">Open Guide</span><span class="mr">मार्गदर्शिका</span></a>
+      </div>
+    </div>
+    <p class="disc"><span class="en">Agricultural recommendations may vary according to soil condition, crop age, variety, climate and local conditions. Use soil-test results and consult local agricultural experts before applying fertilizers or crop-protection products.</span><span class="mr">मातीची स्थिती, झाडाचे वय, जात, हवामान आणि स्थानिक परिस्थितीनुसार शेती शिफारशींमध्ये फरक असू शकतो. खते किंवा पीक-संरक्षण औषधे वापरण्यापूर्वी मातीचा तपासणी अहवाल पाहावा आणि स्थानिक कृषी तज्ज्ञांचा सल्ला घ्यावा.</span></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY="sfa_lang"; // same key the guide uses, so the language choice carries over
+  function get(){try{return localStorage.getItem(KEY)||"mr"}catch(e){return "mr"}}
+  function apply(l){
+    document.body.setAttribute("data-lang",l);
+    document.documentElement.lang=l;
+    document.getElementById("langBtn").textContent = l==="mr" ? "EN" : "मराठी";
+  }
+  document.getElementById("langBtn").addEventListener("click",function(){
+    var n=get()==="mr"?"en":"mr";
+    try{localStorage.setItem(KEY,n)}catch(e){}
+    apply(n);
+  });
+  apply(get());
+})();
+</script>
 </body>
 </html>

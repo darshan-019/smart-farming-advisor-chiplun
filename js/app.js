@@ -42,7 +42,7 @@ function toggleLang() {
 function renderTopbar() {
   return `
     <div class="topbar">
-      <a class="brand" href="landing.html">
+      <a class="brand" href="index.html">
         <span class="emoji">&#127807;</span><span>${tr(UI.siteName)}</span>
       </a>
       <div class="controls">
@@ -50,7 +50,7 @@ function renderTopbar() {
       </div>
     </div>
     <nav class="topnav" aria-label="${tr(UI.siteName)}">
-      <a href="landing.html">${tr(UI.navHome)}</a>
+      <a href="index.html">${tr(UI.navHome)}</a>
       <a href="#home">${tr(UI.navCrops)}</a>
       <a href="#calendar">${tr(UI.navCalendar)}</a>
       <a href="#fertilizer">${tr(UI.navFertilizer)}</a>
