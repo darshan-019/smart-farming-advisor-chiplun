@@ -372,3 +372,26 @@ footer {
 @media (min-width: 480px) {
   .crop-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* ---------- Top navigation ---------- */
+.topbar .brand { text-decoration: none; }
+.topnav {
+  position: sticky;
+  top: 60px;
+  z-index: 29;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 8px 12px;
+  background: var(--leaf-light);
+  scrollbar-width: thin;
+}
+.topnav a {
+  flex: 0 0 auto;
+  color: var(--white);
+  text-decoration: none;
+  padding: 7px 11px;
+  border-radius: 9px;
+  font-size: .9rem;
+}
+.topnav a:hover, .topnav a:focus-visible { background: rgba(255,255,255,.16); }

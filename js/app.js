@@ -42,30 +42,24 @@ function toggleLang() {
 function renderTopbar() {
   return `
     <div class="topbar">
-      <button class="brand" onclick="navigate('home')">
-        <span class="emoji">🌾</span><span>${tr(UI.siteName)}</span>
-      </button>
+      <a class="brand" href="landing.html">
+        <span class="emoji">&#127807;</span><span>${tr(UI.siteName)}</span>
+      </a>
       <div class="controls">
         <button class="langbtn" onclick="toggleLang()">${tr(UI.langToggle)}</button>
-        <button class="iconbtn" onclick="toggleDrawer()">☰</button>
       </div>
     </div>
-    <div class="navdrawer" id="navdrawer" onclick="if(event.target===this) closeDrawer()">
-      <div class="navpanel">
-        <button class="close" onclick="closeDrawer()">✕</button>
-        <div style="clear:both;height:8px;"></div>
-        <button onclick="closeDrawer();navigate('home')">${tr(UI.navHome)}</button>
-        <button onclick="closeDrawer();navigate('home')">${tr(UI.navCrops)}</button>
-        <button onclick="closeDrawer();navigate('calendar')">${tr(UI.navCalendar)}</button>
-        <button onclick="closeDrawer();navigate('fertilizer')">${tr(UI.navFertilizer)}</button>
-        <button onclick="closeDrawer();navigate('pest')">${tr(UI.navPest)}</button>
-        <button onclick="closeDrawer();navigate('about')">${tr(UI.navAbout)}</button>
-        <button onclick="closeDrawer();navigate('feedback')">${tr(UI.navFeedback)}</button>
-      </div>
-    </div>
+    <nav class="topnav" aria-label="${tr(UI.siteName)}">
+      <a href="landing.html">${tr(UI.navHome)}</a>
+      <a href="#home">${tr(UI.navCrops)}</a>
+      <a href="#calendar">${tr(UI.navCalendar)}</a>
+      <a href="#fertilizer">${tr(UI.navFertilizer)}</a>
+      <a href="#pest">${tr(UI.navPest)}</a>
+      <a href="#about">${tr(UI.navAbout)}</a>
+      <a href="#feedback">${tr(UI.navFeedback)}</a>
+    </nav>
   `;
 }
-
 function render() {
   const hash = window.location.hash.replace("#", "") || "home";
   const parts = hash.split("/");
